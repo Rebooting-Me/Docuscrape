@@ -1,0 +1,83 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base pageTitle="Docuscrape">
+  <h1>
+    Tired of referring <span>documentation</span> on the Web? Building <span
+      >RAGs</span
+    > with online documentation stresses you out?
+  </h1>
+  <h1 class="tagline">Let <span>DocuScrape</span> simplify it for you!</h1>
+  <a id="formRedirect" href="/form">Start</a>
+</Base>
+
+<style>
+  .tagline {
+    font-weight: 900;
+    margin-top: 4rem;
+  }
+  h1 {
+    margin-top: 4rem;
+    text-align: center;
+    margin-top: 2rem;
+    font-weight: 300;
+    font-size: 2.5rem;
+  }
+  span {
+    background-image: linear-gradient(to right, #ffc700, #cc00ff);
+    color: transparent;
+    background-clip: text;
+  }
+  #formRedirect {
+    text-align: center;
+    display: block;
+    width: fit-content;
+    margin: 2rem auto;
+    padding: 0.5rem 2rem;
+    background-color: whitesmoke;
+    color: #202423;
+    border-radius: 15px;
+    border: 3px solid #ffc700;
+    font-size: 2rem;
+    cursor: pointer;
+    font-weight: 900;
+    position: relative;
+    transition:
+      background-color 0.2s ease-in-out,
+      color 0.2s ease-in-out,
+      border-color 0.1s ease-in-out;
+  }
+  /* #formRedirect:hover {
+    background-image: linear-gradient(to right, #ffc700, #cc00ff);
+    color: transparent;
+    background-clip: text;
+    border: 3px solid #ffc700;
+  } */
+  #formRedirect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, #ffc700, #cc00ff);
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  #formRedirect:hover {
+    color: whitesmoke;
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  #formRedirect:hover::before {
+    opacity: 1;
+  }
+  #formRedirect:active {
+    transform: scale(0.95);
+  }
+</style>

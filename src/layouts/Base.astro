@@ -1,0 +1,28 @@
+---
+const { pageTitle } = Astro.props;
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "@fontsource-variable/inter";
+import "../global.css";
+import { slide, ViewTransitions } from "astro:transitions";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <div class="wrapper">
+      <Header />
+      <main transition:animate={slide({ duration: "0.3s" })}>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

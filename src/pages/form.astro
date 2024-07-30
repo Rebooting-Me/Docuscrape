@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import MyForm from "../components/Form";
+---
+
+<Base pageTitle="Docuscrape">
+  <h1>Enter initial URL</h1>
+  <MyForm client:load />
+</Base>
+
+<style>
+  h1 {
+    text-align: center;
+    margin-top: 2rem;
+  }
+</style>
