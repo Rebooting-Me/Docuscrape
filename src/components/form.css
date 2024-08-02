@@ -74,3 +74,47 @@ form {
   #scrape:active {
     transform: scale(0.95);
   }
+
+  .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-content {
+  max-width: 800px;
+  background-color: rgb(255, 174, 0);
+  padding: 20px;
+  border-radius: 15px;
+  border: 3px solid #ffe895;
+  text-align: center;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.overlay-content button {
+  background-color: #01900f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 15px;
+  cursor: pointer;
+  /* margin-top: 20px; */
+  transition: transform 0.1s;
+}
+
+.overlay-content button:hover {
+  transform: scale(1.05);
+}
+
+.overlay-content button:active {
+  transform: scale(0.95);
+}

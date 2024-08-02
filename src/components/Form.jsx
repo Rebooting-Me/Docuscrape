@@ -4,6 +4,7 @@ import "./form.css";
 export default function Form() {
   const [responseMessage, setResponseMessage] = useState("");
   const [downloadUrl, setDownloadUrl] = useState("");
+  const [showOverlay, setShowOverlay] = useState(false);
 
   async function submit(e) {
     e.preventDefault();
@@ -19,7 +20,7 @@ export default function Form() {
         // body: JSON.stringify({ firstUrl }),
       }
     );
-    
+
     if (response.ok) {
       const data = await response.json();
       const combinedMarkdown = data.content
@@ -46,25 +47,51 @@ export default function Form() {
     // setDownloadUrl("");
   }
 
+  function handleFocus() {
+    const overlayShown = localStorage.getItem("overlayShown");
+    if (overlayShown !== "true") {
+      setShowOverlay(true);
+    }
+  }
+
+  function handleCloseOverlay() {
+    setShowOverlay(false);
+    localStorage.setItem("overlayShown", "true");
+  }
+
   return (
-    <form onSubmit={submit}>
-      <label htmlFor="name">
-        <input
-          type="url"
-          id="firstUrl"
-          name="firstUrl"
-          autoComplete="firstUrl"
-          placeholder="https://playwright.dev/docs/intro"
-          required
-        />
-      </label>
-      <button id="scrape">Scrape</button>
-      {responseMessage && <p>{responseMessage}</p>}
-      {downloadUrl && (
-        <button type="button" onClick={downloadFile}>
-          Download Markdown File
-        </button>
+    <>
+      <form onSubmit={submit}>
+        <label htmlFor="name">
+          <input
+            type="url"
+            id="firstUrl"
+            name="firstUrl"
+            autoComplete="firstUrl"
+            placeholder="https://playwright.dev/docs/intro"
+            required
+            onFocus={handleFocus}
+          />
+        </label>
+        <button id="scrape">Scrape</button>
+        {responseMessage && <p>{responseMessage}</p>}
+        {downloadUrl && (
+          <button type="button" onClick={downloadFile}>
+            Download Markdown File
+          </button>
+        )}
+      </form>
+      {showOverlay && (
+        <div className="overlay">
+          <div className="overlay-content">
+            <p>
+              <span style={{fontWeight: "bolder"}}>Important:</span> Ensure you have read the instructions
+              stated above before using the tool!
+            </p>
+            <button onClick={handleCloseOverlay}>OK</button>
+          </div>
+        </div>
       )}
-    </form>
+    </>
   );
 }

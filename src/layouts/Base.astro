@@ -14,13 +14,13 @@ import { fade, slide, ViewTransitions } from "astro:transitions";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
-    <ViewTransitions />
+    <ViewTransitions fallback="swap" />
   </head>
   <body>
     <div class="wrapper">
       <Header />
       <div class="container">
-        <main transition:animate={fade({ duration: "0.4s" })}>
+        <main>
           <slot />
         </main>
       </div>
