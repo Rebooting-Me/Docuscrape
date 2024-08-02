@@ -14,15 +14,16 @@ import Base from "../layouts/Base.astro";
 
 <style>
   .tagline {
-    font-weight: 900;
+    font-weight: 800;
     margin-top: 4rem;
+    word-spacing: 0.2em;
   }
   h1 {
     margin-top: 4rem;
     text-align: center;
     margin-top: 2rem;
     font-weight: 300;
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
   span {
     background-image: linear-gradient(to right, #ffc700, #cc00ff);
@@ -79,5 +80,13 @@ import Base from "../layouts/Base.astro";
   }
   #formRedirect:active {
     transform: scale(0.95);
+  }
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    #formRedirect {
+      font-size: 1.5rem;
+    }
   }
 </style>

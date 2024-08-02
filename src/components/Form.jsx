@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./form.css";
 
 export default function Form() {
   const [responseMessage, setResponseMessage] = useState("");
@@ -48,16 +49,16 @@ export default function Form() {
   return (
     <form onSubmit={submit}>
       <label htmlFor="name">
-        Initial URL
         <input
           type="url"
           id="firstUrl"
           name="firstUrl"
           autoComplete="firstUrl"
+          placeholder="https://playwright.dev/docs/intro"
           required
         />
       </label>
-      <button>Scrape</button>
+      <button id="scrape">Scrape</button>
       {responseMessage && <p>{responseMessage}</p>}
       {downloadUrl && (
         <button type="button" onClick={downloadFile}>

@@ -4,13 +4,43 @@ import MyForm from "../components/Form";
 ---
 
 <Base pageTitle="Docuscrape">
-  <h1>Enter initial URL</h1>
-  <MyForm client:load />
+  <section>
+    <h1>How to use <span>Docuscrape</span>?</h1>
+    <h2>Input the base URL of the documentation site you wish to scrape</h2>
+    <MyForm client:load />
+    <img
+      style="width: 100%; height: auto; display: block;
+    margin: 3rem 0; border-radius: 15px; box-shadow: 0 0 30px 0 #74567b;"
+      src="/formInput.gif"
+      alt="Form input example"
+    />
+  </section>
 </Base>
 
 <style>
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   h1 {
     text-align: center;
-    margin-top: 2rem;
+    font-size: 3rem;
+    font-weight: 800;
+    word-spacing: 0.2em;
+    margin: 0;
+    padding: 10px;
+  }
+  span {
+    background-image: linear-gradient(to right, #ffc700, #cc00ff);
+    color: transparent;
+    background-clip: text;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 0 0 1rem 0;
+    padding: 10px;
   }
 </style>

@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "@fontsource-variable/inter";
 import "../global.css";
-import { slide, ViewTransitions } from "astro:transitions";
+import { fade, slide, ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -19,9 +19,11 @@ import { slide, ViewTransitions } from "astro:transitions";
   <body>
     <div class="wrapper">
       <Header />
-      <main transition:animate={slide({ duration: "0.3s" })}>
-        <slot />
-      </main>
+      <div class="container">
+        <main transition:animate={fade({ duration: "0.4s" })}>
+          <slot />
+        </main>
+      </div>
       <Footer />
     </div>
   </body>
