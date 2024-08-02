@@ -74,6 +74,8 @@ export default function Form() {
           />
         </label>
         <button id="scrape">Scrape</button>
+        <div id="scrapeOverlay">a sliding toast</div>
+
         {responseMessage && <p>{responseMessage}</p>}
         {downloadUrl && (
           <button type="button" onClick={downloadFile}>
@@ -85,8 +87,8 @@ export default function Form() {
         <div className="overlay">
           <div className="overlay-content">
             <p>
-              <span style={{fontWeight: "bolder"}}>Important:</span> Ensure you have read the instructions
-              stated above before using the tool!
+              <span style={{ fontWeight: "bolder" }}>Important:</span> Ensure
+              you have read the instructions stated above before using the tool!
             </p>
             <button onClick={handleCloseOverlay}>OK</button>
           </div>

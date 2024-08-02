@@ -3,13 +3,14 @@ import Navigation from "./Nav.astro";
 ---
 
 <nav>
-  <a style="max-width: 250px;" href="/">
+  <a href="/">
     <img
       id="logoImage"
       src="/logoImage.svg"
       alt="Docuscrape logo"
-      style="width: 120%; height: auto; display: block;"
+      style="width: 120%; height: auto;"
     />
+    <h1 id="logo">&lt; <span>Docuscrape</span> &sol;&gt;</h1>
   </a>
   <Navigation />
 </nav>
@@ -17,16 +18,42 @@ import Navigation from "./Nav.astro";
 <style>
   nav {
     display: flex;
-    margin: 1.5rem 0 0 0;
+    margin: 2rem 0;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     padding: 0 3rem;
   }
+  #logo {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+  #logo span {
+    display: inline-block;
+    background-image: linear-gradient(to right, #ffc700, #cc00ff);
+    color: transparent;
+    background-clip: text;
+  }
   @media (max-width: 360px) {
     nav {
       justify-content: center;
       gap: 2rem;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    #logo {
+      display: none;
+    }
+    #logoImage {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 1001px) {
+    #logoImage {
+      display: none;
     }
   }
 </style>
