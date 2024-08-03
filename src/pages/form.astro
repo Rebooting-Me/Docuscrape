@@ -5,22 +5,42 @@ import MyForm from "../components/Form";
 
 <Base pageTitle="Docuscrape">
   <section>
-    <p style="display: none;">Docuscrape is an automation tool which lets you scrape documentation websites iteratively relieving the user  </p>
-    <h1>How to use <span>Docuscrape</span> ?</h1>
-    <h2>Input the base URL of the documentation site you wish to scrape</h2>
-    <MyForm client:load />
+    <!-- <p style="text-align: center; font-size: 2rem; font-weight: 300;">
+      Docuscrape is an automation tool which lets you scrape documentation
+      websites in markdown making it easy to build custom RAGs!
+    </p> -->
+    <span
+      style="margin: 2rem 0; text-align: center; font-size: 2rem; font-weight: 300;"
+      ><p>Follow the steps below to get started!</p><hr
+        style="margin-top: 1rem; width: 100%; border-color: #777;"
+      /></span
+    >
+    <h1>
+      <span style="font-weight: 800; color: whitesmoke;">1.</span> Input the base
+      URL of the documentation site you wish to scrape
+    </h1>
     <img
       decoding="async"
       loading="lazy"
       src="/first.gif"
       alt="Documentation site url input demo"
     />
+    <h1>
+      <span style="font-weight: 800; color: whitesmoke;">2.</span> Ensure the page
+      has a span
+      <span>Next</span> button for navigation.
+    </h1>
     <img
       decoding="async"
       loading="lazy"
       src="/Next.gif"
       alt="Documentation site url input demo"
     />
+    <h1 style="margin-bottom: 1rem;">
+      <span style="font-weight: 800; color: whitesmoke;">3.</span>
+      <span>Start Scraping!</span>
+    </h1>
+    <MyForm client:load />
   </section>
 </Base>
 
@@ -31,10 +51,10 @@ import MyForm from "../components/Form";
     justify-content: center;
     align-items: center;
   }
-  h1, h2 {
+  h1 {
     text-align: center;
-    font-size: 3rem;
-    font-weight: 800;
+    font-size: 2.5rem;
+    font-weight: 200;
     word-spacing: 0.2em;
     margin: 0;
     padding: 10px;
@@ -43,12 +63,6 @@ import MyForm from "../components/Form";
     background-image: linear-gradient(to right, #ffc700, #cc00ff);
     color: transparent;
     background-clip: text;
-  }
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin: 0 0 1rem 0;
-    padding: 10px;
   }
   img {
     aspect-ratio: 16/9;
@@ -59,5 +73,10 @@ import MyForm from "../components/Form";
     margin: 3rem 0;
     border-radius: 15px;
     box-shadow: 0 0 30px 0 #74567b;
+  }
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 1.8rem;
+    }
   }
 </style>
