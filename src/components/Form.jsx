@@ -1,13 +1,17 @@
 import { useState } from "react";
+import { useRef } from "react";
 import "./form.css";
 
 export default function Form() {
   const [responseMessage, setResponseMessage] = useState("");
   const [downloadUrl, setDownloadUrl] = useState("");
   const [showOverlay, setShowOverlay] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const inputRef = useRef(null);
 
   async function submit(e) {
     e.preventDefault();
+    setIsLoading(true);
     const formData = new FormData(e.target);
     const firstUrl = formData.get("firstUrl");
     const response = await fetch(
@@ -20,6 +24,7 @@ export default function Form() {
         // body: JSON.stringify({ firstUrl }),
       }
     );
+    setIsLoading(false);
 
     if (response.ok) {
       const data = await response.json();
@@ -34,6 +39,7 @@ export default function Form() {
       const data = await response.json();
       setResponseMessage(data.message);
     }
+    inputRef.current.value = "";
   }
 
   function downloadFile() {
@@ -61,6 +67,74 @@ export default function Form() {
 
   return (
     <>
+      {isLoading && (
+        <div id="loaderOverlay">
+          <div id="loader">
+            <p style={{color: "#333", fontWeight: "600"}}>Processing Request...</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+            >
+              <defs>
+                <filter id="svgSpinnersGooeyBalls20">
+                  <feGaussianBlur
+                    in="SourceGraphic"
+                    result="y"
+                    stdDeviation="1"
+                  />
+                  <feColorMatrix
+                    in="y"
+                    result="z"
+                    values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 18 -7"
+                  />
+                  <feBlend in="SourceGraphic" in2="z" />
+                </filter>
+              </defs>
+              <g filter="url(#svgSpinnersGooeyBalls20)">
+                <circle cx="5" cy="12" r="4" fill="currentColor">
+                  <animate
+                    attributeName="cx"
+                    calcMode="spline"
+                    dur="2s"
+                    keySplines=".36,.62,.43,.99;.79,0,.58,.57"
+                    repeatCount="indefinite"
+                    values="5;8;5"
+                  />
+                </circle>
+                <circle cx="19" cy="12" r="4" fill="currentColor">
+                  <animate
+                    attributeName="cx"
+                    calcMode="spline"
+                    dur="2s"
+                    keySplines=".36,.62,.43,.99;.79,0,.58,.57"
+                    repeatCount="indefinite"
+                    values="19;16;19"
+                  />
+                </circle>
+                <animateTransform
+                  attributeName="transform"
+                  dur="0.75s"
+                  repeatCount="indefinite"
+                  type="rotate"
+                  values="0 12 12;360 12 12"
+                />
+              </g>
+            </svg>
+          </div>
+        </div>
+      )}
+      {responseMessage && downloadUrl && (
+        <div id="responseOverlay">
+          <div id="response">
+            <p>{responseMessage}</p>
+            <button type="button" onClick={downloadFile}>
+              Download Markdown File
+            </button>
+          </div>
+        </div>
+      )}
       <form onSubmit={submit}>
         <label htmlFor="name">
           <input
@@ -71,17 +145,11 @@ export default function Form() {
             placeholder="https://playwright.dev/docs/intro"
             required
             onFocus={handleFocus}
+            ref={inputRef}
           />
         </label>
         <button id="scrape">Scrape</button>
-        <div id="scrapeOverlay">a sliding toast</div>
-
-        {responseMessage && <p>{responseMessage}</p>}
-        {downloadUrl && (
-          <button type="button" onClick={downloadFile}>
-            Download Markdown File
-          </button>
-        )}
+        {/* {isLoading && <div id="scrapeOverlay">a sliding toast</div>} */}
       </form>
       {showOverlay && (
         <div className="overlay">
