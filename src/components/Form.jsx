@@ -68,6 +68,7 @@ export default function Form() {
 
   function closeResponse() {
     setResponseOverlay(false);
+    window.location.reload();
   }
 
   return (
