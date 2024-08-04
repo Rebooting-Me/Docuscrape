@@ -7,6 +7,7 @@ export default function Form() {
   const [downloadUrl, setDownloadUrl] = useState("");
   const [showOverlay, setShowOverlay] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [responseOverlay, setResponseOverlay] = useState(true);
   const inputRef = useRef(null);
 
   async function submit(e) {
@@ -65,12 +66,18 @@ export default function Form() {
     localStorage.setItem("overlayShown", "true");
   }
 
+  function closeResponse() {
+    setResponseOverlay(false);
+  }
+
   return (
     <>
       {isLoading && (
         <div id="loaderOverlay">
           <div id="loader">
-            <p style={{color: "#333", fontWeight: "600"}}>Processing Request...</p>
+            <p style={{ color: "#333", fontWeight: "600" }}>
+              Processing Request...
+            </p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -125,13 +132,18 @@ export default function Form() {
           </div>
         </div>
       )}
-      {responseMessage && downloadUrl && (
+      {responseMessage && downloadUrl && responseOverlay && (
         <div id="responseOverlay">
           <div id="response">
             <p>{responseMessage}</p>
-            <button type="button" onClick={downloadFile}>
-              Download Markdown File
-            </button>
+            <div style={{ display: "flex", gap: "2rem" }}>
+              <button id="download" type="button" onClick={downloadFile}>
+                Download
+              </button>
+              <button id="close" type="button" onClick={closeResponse}>
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}
