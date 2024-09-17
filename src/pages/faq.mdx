@@ -1,5 +1,32 @@
 ---
-layout: ../layouts/Base.astro
+layout: ../layouts/Post.astro
 ---
 
 # Frequently Asked Questions
+
+<figure>
+<img src="/faq.png" decoding="async" loading="lazy"/>
+<figcaption>All Illustrations by <a href="https://icons8.com/illustrations/author/eEbrZFlkyZbD">Anna A</a> from <a href="https://icons8.com/illustrations">Ouch!</a></figcaption>
+</figure>
+Below are the collection of some common issues that you might face while using the app. If you don't find the solution to your problem here, please feel free to contact us or open an issue on GitHub.
+
+## Can Docuscrape only scrape documentations which has a 'Next' button for Navigation?
+
+<img src="/hci.png" decoding="async" loading="lazy"/>
+Yes, currently Docuscrape can only scrape documentations which has a 'Next' button for Navigation. I am working on adding support for other types of documentations as well.
+
+{/* <hr /> */}
+
+## Will Docuscrape have support for other kinds of Documentations sites as well in future?
+
+<img src="/support.png" decoding="async" loading="lazy"/>
+In all probability, _**YES**_! Docuscrape is a personal project but if my time magament skills allow it, I will surely be adding more support in the near future!
+
+{/* <hr /> */}
+
+## Why is Docuscrape only returning scraped markdown for the first page?
+
+<img src="/why.png" decoding="async" loading="lazy"/>
+Docuscrape's backend hosts a headles browser running Playwright script. Since this is a hobby project, I have hosted it on a free tier and the server shuts down after 48hrs of inactivity to save costs(_its a whole different struggle to host headless browsers on a free tier_). So this might have been the cause of the above anomaly. Refresh the page and run it again. Docuscrape should return all the scraped content properly this time!
+
+{/* <hr /> */}
